@@ -1,0 +1,1 @@
+A,B::Callable[[A],B] -> List[A] -> List[B]
