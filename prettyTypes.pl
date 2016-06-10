@@ -59,16 +59,16 @@ replace_vars(Val, UVal, Vars, NewVars, L, Z) :-
 replace_var(Value, UValue, Vars, NewVars, L, Z) :-
     format(atom(A0), '~p', Value),
     writeln(A0),
-    assoc:get_assoc(A0, Vars, A1),
-    =(Vars, NewVars), % var exists
-    =(UValue, A1),
-    =(Z, L);
-
-    format(atom(A0), '~p', Value),
-    Z is L + 1, M is L - 1,
-    write(M),write(L),writeln(''),
-    sub_atom('ABCDEF', M, 1, _, UValue),
-    assoc:put_assoc(A0, Vars, UValue, NewVars).
+    (   get_assoc(A0, Vars, A1) ->
+        Vars = NewVars,       % var exists
+        UValue = A1,
+        Z = L
+    ;   format(atom(A0), '~p', Value),
+        Z is L + 1, M is L - 1,
+        format("~w~w\n", [M,L]),
+        sub_atom('ABCDEF', M, 1, _, UValue),
+        put_assoc(A0, Vars, UValue, NewVars)
+    ).
 
 replace_vars_([], [], Vars, Vars, L, L).
 replace_vars_([A | B], [UA | UB], Vars, NewVars, L, Z) :-
