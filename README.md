@@ -1,6 +1,6 @@
 # hatlog
 
-a proof of concept of a type inference tool for Python written in Prolog. Idea described in [blog](http://code.alehander42.me/python-type-systems-prolog)
+a proof of concept of a type inference tool for Python written in Prolog. Idea described in [blog](http://code.alehander42.me/prolog_type_systems)
 
 # how?
 
